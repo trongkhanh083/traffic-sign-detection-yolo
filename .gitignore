@@ -1,0 +1,8 @@
+# Jupyter Notebook
+.ipynb_checkpoints/
+
+# Data folders
+data.zip
+
+# Byte-compiled
+__pycache__/

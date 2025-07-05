@@ -1,0 +1,8 @@
+services:
+  - type: web
+    name: yolov5-api
+    runtime: docker
+    port: 10000
+    env: python
+    buildCommand: docker build -t yolov5-api .
+    startCommand: uvicorn app:app --host 0.0.0.0 --port 10000
