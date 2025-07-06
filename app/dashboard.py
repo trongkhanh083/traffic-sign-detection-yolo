@@ -65,7 +65,7 @@ if uploaded_file:
                     }
 
                     # Draw label
-                    label = f"{CLASS_NAMES.get(cls_id), f'Class {cls_id}'} ({conf:.2f})"
+                    label = f"{CLASS_NAMES.get(cls_id)} ({conf:.2f})"
                     cv2.putText(img_cv, label, 
                                 (x1, y1 - 10), 
                                 cv2.FONT_HERSHEY_SIMPLEX, 
