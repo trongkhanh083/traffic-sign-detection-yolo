@@ -9,8 +9,6 @@ RUN apt-get update && apt-get install -y \
     libxrender-dev \
     && rm -rf /var/lib/apt/lists/*
 
-RUN pip install onnx onnxruntime
-
 WORKDIR /app
 
 COPY ./app/requirements.txt .

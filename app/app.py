@@ -2,20 +2,24 @@ from fastapi import FastAPI, UploadFile, File
 from ultralytics import YOLO
 import cv2
 import numpy as np
+import gc
 from fastapi.responses import JSONResponse
 
 app = FastAPI()
 model = YOLO("best.onnx", task='detect')  # Load your exported model
 
-
 @app.post("/predict")
 async def predict(file: UploadFile = File(...)):
     # Read image
     contents = await file.read()
-    image = cv2.imdecode(np.frombuffer(contents, np.uint8), cv2.IMREAD_COLOR)
-    
-    # Run inference
-    result = model.predict(image, conf=0.5)
+    nparr = np.frombuffer(contents, np.uint8)
+    img = cv2.imdecode(nparr, cv2.IMREAD_COLOR)
+
+    if max(img.shape) > 1280:
+        img = cv2.resize(img, (1280, 1280))
+
+    result = model(img, imgsz=640)
+    gc.collect()
     
     # Format response
     detections = []
