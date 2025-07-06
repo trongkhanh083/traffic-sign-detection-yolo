@@ -46,8 +46,26 @@ if uploaded_file:
                     box_color = (0, 255, 0)  # Green
                     cv2.rectangle(img_cv, (x1, y1), (x2, y2), box_color, 2)
                     
+                    CLASS_NAMES = {
+                        0: "Green Light",
+                        1: "Red Line",
+                        2: "Speed Limit 10",
+                        3: "Speed Limit 100",
+                        4: "Speed Limit 110",
+                        5: "Speed Limit 120",
+                        6: "Speed Limit 20",
+                        7: "Speed Limit 30",
+                        8: "Speed Limit 40",
+                        9: "Speed Limit 50",
+                        10: "Speed Limit 60",
+                        11: "Speed Limit 70",
+                        12: "Speed Limit 80",
+                        13: "Speed Limit 90",
+                        14: "Stop"
+                    }
+
                     # Draw label
-                    label = f"Class {cls_id} ({conf:.2f})"
+                    label = f"{CLASS_NAMES.get(cls_id), f'Class {cls_id}'} ({conf:.2f})"
                     cv2.putText(img_cv, label, 
                                 (x1, y1 - 10), 
                                 cv2.FONT_HERSHEY_SIMPLEX, 
